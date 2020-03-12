@@ -21,7 +21,7 @@ spec:
   stages {
     stage('Build with Kaniko') {
       steps {
-        git 'https://github.com/prabhatsharma/sample-microservice'
+        git 'https://github.com/WEIGUDA/test_fastapi.git'
         container(name: 'kaniko') {
             sh '''
             ls -alh `pwd`
