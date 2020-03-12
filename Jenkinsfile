@@ -24,6 +24,9 @@ spec:
         git 'https://github.com/prabhatsharma/sample-microservice'
         container(name: 'kaniko') {
             sh '''
+            ls -alh `pwd`
+            '''
+            sh '''
             /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --no-push
             '''
         }
