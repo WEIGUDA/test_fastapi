@@ -15,31 +15,16 @@ spec:
     command:
     - cat
     tty: true
-  - name: ubuntu
-    image: ubuntu:18.04
-    imagePullPolicy: Always
-    command:
-    - cat
-    tty: true
 """
     }
   }
   stages {
-    // stage('Build with Kaniko') {
-    //   steps {
-    //     git 'https://github.com/prabhatsharma/sample-microservice'
-    //     container(name: 'kaniko') {
-    //         sh '''
-    //         /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd`
-    //         '''
-    //     }
-    //   }
-    // }
-     stage('Test') {
+    stage('Build with Kaniko') {
       steps {
-        container(name: 'ubuntu') {
+        git 'https://github.com/prabhatsharma/sample-microservice'
+        container(name: 'kaniko') {
             sh '''
-            echo "hello from step test"
+            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd`
             '''
         }
       }
