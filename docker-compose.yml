@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  testfastapi:
+    image: testfastapi
+    build:
+      context: .
+      dockerfile: Dockerfile
