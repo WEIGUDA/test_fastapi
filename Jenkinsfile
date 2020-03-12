@@ -19,7 +19,7 @@ spec:
     image: ubuntu:18.04
     imagePullPolicy: Always
     command:
-    - echo hello from ubuntu
+    - echo "hello from ubuntu"
     tty: true
 """
     }
