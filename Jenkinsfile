@@ -21,13 +21,12 @@ spec:
   stages {
     stage('Build with Kaniko') {
       steps {
-        git 'https://github.com/WEIGUDA/test_fastapi.git'
         container(name: 'kaniko') {
             sh '''
             ls -alh `pwd`
             '''
             sh '''
-            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --no-push
+            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --no-push --cache=true
             '''
         }
       }
