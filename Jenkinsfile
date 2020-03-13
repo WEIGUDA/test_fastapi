@@ -22,8 +22,8 @@ spec:
     stage('Build with Kaniko') {
       steps {
         container(name: 'kaniko') {
-            sh "ls -alh ${pwd}"
-            sh "/kaniko/executor --dockerfile ${pwd}/Dockerfile --context ${pwd} --no-push"
+            sh "ls -alh ${env.WORKSPACE}"
+            sh "/kaniko/executor --dockerfile ${env.WORKSPACE}/Dockerfile --context ${env.WORKSPACE} --no-push"
         }
       }
     }
