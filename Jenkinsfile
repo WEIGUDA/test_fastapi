@@ -4,7 +4,38 @@ pipeline {
   }
   agent {
     kubernetes {
-      yamlFile: 'JenkinsBuildPod.yaml'
+      yaml: """
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  containers:
+    - name: kaniko
+      image: gcr.azk8s.cn/kaniko-project/executor:debug
+      imagePullPolicy: Always
+      command:
+        - cat
+      tty: true
+      volumeMounts:
+        - name: aliyun-registry
+          mountPath: /kaniko/.docker
+        - name: kaniko-cache
+          mountPath: /cache
+  volumes:
+    - name: aliyun-registry
+      projected:
+        sources:
+          - secret:
+              name: aliyun-registry-secret
+              items:
+                - key: .dockerconfigjson
+                  path: config.json
+    - name: kaniko-cache
+      persistentVolumeClaim:
+        claimName: kaniko-cache
+    
+
+      """
     }
   }
   stages {
