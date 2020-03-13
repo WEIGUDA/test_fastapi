@@ -6,8 +6,6 @@ kind: Pod
 metadata:
   name: kaniko
 spec:
-  imagePullSecrets:
-  - name: aliyun-registry-secret
   containers:
   - name: kaniko
     image: gcr.azk8s.cn/kaniko-project/executor:debug
@@ -15,6 +13,18 @@ spec:
     command:
     - cat
     tty: true
+    volumeMounts:
+      - name: aliyun-registry
+        mountPath: /kaniko/.docker
+  volumes:
+  - name: aliyun-registry
+    projected:
+      sources:
+      - secret:
+          name: aliyun-registry-secret 
+          items:
+            - key: .dockerconfigjson
+              path: config.json
 """
     }
   }
