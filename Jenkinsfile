@@ -22,8 +22,13 @@ spec:
     stage('Build with Kaniko') {
       steps {
         container(name: 'kaniko') {
-            sh "ls -alh ${env.WORKSPACE}"
-            sh "/kaniko/executor --dockerfile ${env.WORKSPACE}/Dockerfile --context ${env.WORKSPACE} --no-push"
+            sh "
+              /kaniko/executor 
+              --dockerfile ${env.WORKSPACE}/Dockerfile 
+              --context ${env.WORKSPACE} 
+              --destination registry.cn-shanghai.aliyuncs.com/weiguda/${JOB_NAME}:${GIT_COMMIT}
+              --destination registry.cn-shanghai.aliyuncs.com/weiguda/${JOB_NAME}:latest
+            "
         }
       }
     }
