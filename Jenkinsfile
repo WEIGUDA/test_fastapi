@@ -23,7 +23,7 @@ spec:
       steps {
         container(name: 'kaniko') {
             sh '''
-            ls -alh `pwd`
+            ls -alh ${pwd}
             '''
             sh '''
             /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --no-push --cache=true
