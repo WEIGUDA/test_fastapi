@@ -33,9 +33,7 @@ spec:
     - name: kaniko-cache
       persistentVolumeClaim:
         claimName: kaniko-cache
-    
-
-      """
+"""
     }
   }
   stages {
