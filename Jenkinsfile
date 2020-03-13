@@ -35,7 +35,7 @@ spec:
     stage('Build with Kaniko') {
       steps {
         container(name: 'kaniko') {
-            sh "/kaniko/executor --dockerfile ${env.WORKSPACE}/Dockerfile  --context ${env.WORKSPACE} --cache --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:${GIT_COMMIT} --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:latest"
+            sh "/kaniko/executor --dockerfile ${env.WORKSPACE}/Dockerfile --context ${env.WORKSPACE} --cache --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:${GIT_COMMIT} --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:latest"
         }
       }
     }
