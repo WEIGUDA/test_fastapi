@@ -14,9 +14,9 @@ pipeline {
             sh "/kaniko/executor \
             --dockerfile ${env.WORKSPACE}/Dockerfile \
             --context ${env.WORKSPACE} \
-            --cache=true --cache-dir=/cache \
-            --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:${GIT_COMMIT} \
-            --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:latest"
+            --cache=true \
+            --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:latest \
+            --destination registry.cn-shanghai.aliyuncs.com/weiguda/${REPOSITORY_NAME}:${GIT_COMMIT}"
         }
       }
     }

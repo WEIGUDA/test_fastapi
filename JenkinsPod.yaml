@@ -12,8 +12,6 @@ spec:
       volumeMounts:
         - name: aliyun-registry
           mountPath: /kaniko/.docker
-        - name: kaniko-cache
-          mountPath: /cache
   volumes:
     - name: aliyun-registry
       projected:
@@ -23,6 +21,3 @@ spec:
               items:
                 - key: .dockerconfigjson
                   path: config.json
-    - name: kaniko-cache
-      persistentVolumeClaim:
-        claimName: kaniko-cache
