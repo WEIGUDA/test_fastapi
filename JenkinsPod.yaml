@@ -1,6 +1,6 @@
 kind: Pod
 metadata:
-  name: kaniko
+  name: jenkin-build-pod
 spec:
   containers:
     - name: kaniko
